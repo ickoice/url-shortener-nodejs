@@ -3,12 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline' 'unsafe-eval'; script-src * 'unsafe-inline' 'unsafe-eval'; connect-src * 'unsafe-inline'; img-src * data: blob: 'unsafe-inline'; frame-src *; style-src * 'unsafe-inline';" />
+
     <title>Url Shortener</title>
     <link rel="stylesheet" href="styles.css" />
+   
+
 </head>
 <body>
     <header>
         <h1>Short urls - by ickomusic</h1>
     </header>
+    <div id="app">
+        <form @submit.prevent="createUrl()">
+            <label for="url">Url</label>
+            <input id="url" name="url" v-model="url" />
+
+            <label for="slug">Slug</label>
+            <input id="slug" name="slug" v-model="slug" />
+            <button type="submit">Create</button>
+        </form>
+        <pre v-if="created">
+            {{ JSON.stringify(created, null, 2) }}
+        </pre>
+    </div>
+    <script src="vue.min.js"></script>
+    <script src="app.js"></script>
 </body>
 </html>

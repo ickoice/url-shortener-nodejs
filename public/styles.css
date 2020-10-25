@@ -1,4 +1,4 @@
-* {
+/* * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -6,9 +6,15 @@
 
 body {
     font-family: Verdana, Geneva, Tahoma, sans-serif sans-serif;
-}
+} */
 
-header {
+header h1 {
     margin: 1rem;
     text-align: center;
+}
+
+
+main {
+    margin: 1rem;
+    align-items: center;
 }

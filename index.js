@@ -15,7 +15,9 @@ urls.createIndex({ slug: 1 }, { unique: true});
 
 const app = express();
 
-app.use(helmet());
+app.use(helmet({
+    contentSecurityPolicy: false,
+  }));
 app.use(morgan('tiny'));
 app.use(cors());
 app.use(express.json());
@@ -29,6 +31,7 @@ const schema = yup.object().shape({
 app.get('/:id', async (req, res) => {
 
         const {id: slug} = req.params;
+        res.set("Content-Security-Policy", "default-src 'self' 'unsafe-inline' 'unsafe-eval'; script-src 'self' 'unsafe-inline' 'unsafe-eval';");
 
         try {
             const url = await urls.findOne({ slug });
@@ -46,6 +49,7 @@ app.get('/:id', async (req, res) => {
 app.post('/url', async (req, res, next) => {
 
     let { slug, url } = req.body;
+    res.set("Content-Security-Policy", "default-src 'self' 'unsafe-inline' 'unsafe-eval'; script-src 'self' 'unsafe-inline' 'unsafe-eval';");
 
     try {
         await schema.validate({
